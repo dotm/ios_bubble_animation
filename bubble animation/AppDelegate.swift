@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  transform animation
+//  bubble animation
 //
 //  Created by Yoshua Elmaryono on 11/07/18.
 //  Copyright © 2018 Yoshua Elmaryono. All rights reserved.

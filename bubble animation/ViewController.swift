@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  transform animation
+//  bubble animation
 //
 //  Created by Yoshua Elmaryono on 11/07/18.
 //  Copyright © 2018 Yoshua Elmaryono. All rights reserved.
@@ -13,8 +13,16 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        let circleDiameter = 100
+        let centerX = (Int(view.frame.maxX) - circleDiameter)/2
+        let circleFrame = CGRect(x: centerX, y: 283, width: circleDiameter, height: circleDiameter)
+        let circleView = UIView(frame: circleFrame)
+        circleView.backgroundColor = UIColor.red
+        circleView.layer.cornerRadius = CGFloat(circleDiameter/2)
+        view.addSubview(circleView)
     }
     
+    @IBOutlet weak var bubblesViewRegion: UIView!
     var timer: Timer?
     
     @IBAction func screenTapped(_ sender: UITapGestureRecognizer) {
@@ -46,7 +54,7 @@ class ViewController: UIViewController {
         var bubbleView: UIView! = UIView(frame: bubbleFrame)
         bubbleView.layer.cornerRadius = CGFloat(diameter)/2
         bubbleView.backgroundColor = getRandomColor()
-        view.addSubview(bubbleView)
+        bubblesViewRegion.addSubview(bubbleView)
         
         let randomDuration = arc4random_uniform(10)
         UIView.animate(

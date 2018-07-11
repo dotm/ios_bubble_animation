@@ -1,15 +1,15 @@
 //
-//  transform_animationTests.swift
-//  transform animationTests
+//  bubble_animationTests.swift
+//  bubble animationTests
 //
 //  Created by Yoshua Elmaryono on 11/07/18.
 //  Copyright © 2018 Yoshua Elmaryono. All rights reserved.
 //
 
 import XCTest
-@testable import transform_animation
+@testable import bubble_animation
 
-class transform_animationTests: XCTestCase {
+class bubble_animationTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
