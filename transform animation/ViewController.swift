@@ -43,10 +43,10 @@ class ViewController: UIViewController {
         let x = arc4random_uniform(UInt32(view.frame.maxX - CGFloat(diameter)))
 
         let bubbleFrame = CGRect(x: Int(x), y: Int(bottomScreenPosition), width: diameter, height: diameter)
-        var bubbleView: UIView? = UIView(frame: bubbleFrame)
-        bubbleView?.layer.cornerRadius = CGFloat(diameter)/2
-        bubbleView?.backgroundColor = getRandomColor()
-        view.addSubview(bubbleView!)
+        var bubbleView: UIView! = UIView(frame: bubbleFrame)
+        bubbleView.layer.cornerRadius = CGFloat(diameter)/2
+        bubbleView.backgroundColor = getRandomColor()
+        view.addSubview(bubbleView)
         
         let randomDuration = arc4random_uniform(10)
         UIView.animate(
@@ -54,10 +54,10 @@ class ViewController: UIViewController {
             delay: 0,
             options: .curveLinear,
             animations: {
-                bubbleView?.frame = CGRect(x: Int(x), y: -20, width: diameter, height: diameter)
+                bubbleView.frame = CGRect(x: Int(x), y: -20, width: diameter, height: diameter)
             },
             completion: { finished in
-                bubbleView?.removeFromSuperview()
+                bubbleView.removeFromSuperview()
                 bubbleView = nil
             }
         )
