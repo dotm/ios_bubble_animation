@@ -13,6 +13,7 @@ enum State {
 }
 
 class ViewController: UIViewController {
+    //MARK: Properties
     var circleView: UIView!
     var bubbleState: State! {
         didSet {
@@ -28,42 +29,17 @@ class ViewController: UIViewController {
             }
         }
     }
+    var timer: Timer?
+    
+    //Mark: Outlets
     @IBOutlet weak var stateButton: UIButton!
     @IBOutlet weak var coveringRegion: UIView!
     @IBOutlet weak var bubblesViewRegion: UIView!
-    var timer: Timer?
     
-    func setToAlone(){
-        circleView.alpha = 1
-        coveringRegion.alpha = 0.8
-        stateButton.setTitle("Alone", for: .normal)
-    }
-    func setToCrowds(){
-        circleView.alpha = 0
-        coveringRegion.alpha = 0
-        stateButton.setTitle("Crowds", for: .normal)
-    }
+    //MARK: Actions
     @IBAction func onButtonClick(_ sender: UIButton) {
         bubbleState = (bubbleState == .alone) ? .crowds : .alone
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        //setup circleView
-        let circleDiameter = 100
-        let centerX = (Int(view.frame.maxX) - circleDiameter)/2
-        let circleFrame = CGRect(x: centerX, y: 283, width: circleDiameter, height: circleDiameter)
-        circleView = UIView(frame: circleFrame)
-        circleView.backgroundColor = UIColor.red
-        circleView.layer.cornerRadius = CGFloat(circleDiameter/2)
-        view.addSubview(circleView)
-        
-        bubbleState = .crowds
-        setToCrowds()
-    }
-    
     @IBAction func screenTapped(_ sender: UITapGestureRecognizer) {
         if timer == nil {
             generateBubbles()
@@ -73,6 +49,21 @@ class ViewController: UIViewController {
         }
     }
     
+    //MARK: Helper functions
+    func setToAlone(){
+        UIView.animate(withDuration: 2) {
+            self.circleView.alpha = 1
+            self.coveringRegion.alpha = 0.8
+            self.stateButton.setTitle("Alone", for: .normal)
+        }
+    }
+    func setToCrowds(){
+        UIView.animate(withDuration: 2) {
+            self.circleView.alpha = 0
+            self.coveringRegion.alpha = 0
+            self.stateButton.setTitle("Crowds", for: .normal)
+        }
+    }
     func getRandomColor() -> UIColor {
         let red = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
         let green = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
@@ -80,7 +71,6 @@ class ViewController: UIViewController {
         
         return UIColor(red: red, green: green, blue: blue, alpha: 1)
     }
-    
     func generateBubbles(){
         timer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(makeOneBubble), userInfo: nil, repeats: true)
     }
@@ -108,6 +98,24 @@ class ViewController: UIViewController {
                 bubbleView = nil
             }
         )
+    }
+    
+    //MARK: Lifecycle Hooks
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        
+        //setup circleView
+        let circleDiameter = 100
+        let centerX = (Int(view.frame.maxX) - circleDiameter)/2
+        let circleFrame = CGRect(x: centerX, y: 283, width: circleDiameter, height: circleDiameter)
+        circleView = UIView(frame: circleFrame)
+        circleView.backgroundColor = UIColor.red
+        circleView.layer.cornerRadius = CGFloat(circleDiameter/2)
+        view.addSubview(circleView)
+        
+        bubbleState = .crowds
+        setToCrowds()
     }
 }
 
