@@ -13,25 +13,40 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="transform_animation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="bubble_animation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mey-EK-NgR">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mey-EK-NgR">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ufz-Jm-ALT">
-                                <rect key="frame" x="163" y="50" width="51" height="31"/>
-                            </switch>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DHN-vx-lJZ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OPn-4T-fVi">
+                                <rect key="frame" x="164" y="70" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="onButtonClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6uj-vg-fnl"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="Ufz-Jm-ALT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="AG9-vu-UXh"/>
-                            <constraint firstItem="Ufz-Jm-ALT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="q6P-42-JYG"/>
+                            <constraint firstItem="mey-EK-NgR" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="2LV-Cd-MHG"/>
+                            <constraint firstItem="DHN-vx-lJZ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="9sT-vE-dvk"/>
+                            <constraint firstItem="DHN-vx-lJZ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="UAh-id-OcQ"/>
+                            <constraint firstItem="mey-EK-NgR" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="UQb-Wh-EHW"/>
+                            <constraint firstItem="OPn-4T-fVi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gbz-4p-Po8"/>
+                            <constraint firstItem="mey-EK-NgR" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="k7b-AT-5Ec"/>
+                            <constraint firstItem="DHN-vx-lJZ" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="mOY-8K-HXd"/>
+                            <constraint firstItem="DHN-vx-lJZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="n8U-VX-bDT"/>
+                            <constraint firstItem="mey-EK-NgR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="qGv-c8-hJL"/>
+                            <constraint firstItem="OPn-4T-fVi" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="y2N-3l-BtQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <connections>
@@ -40,6 +55,8 @@
                     </view>
                     <connections>
                         <outlet property="bubblesViewRegion" destination="mey-EK-NgR" id="qSB-yC-C3n"/>
+                        <outlet property="coveringRegion" destination="DHN-vx-lJZ" id="91f-S6-OjO"/>
+                        <outlet property="stateButton" destination="OPn-4T-fVi" id="igZ-dm-TrT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

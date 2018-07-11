@@ -8,22 +8,61 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+enum State {
+    case alone, crowds
+}
 
+class ViewController: UIViewController {
+    var circleView: UIView!
+    var bubbleState: State! {
+        didSet {
+            switch bubbleState {
+            case .alone:
+                setToAlone()
+            case .crowds:
+                setToCrowds()
+            case .none:
+                break
+            case .some(_):
+                break
+            }
+        }
+    }
+    @IBOutlet weak var stateButton: UIButton!
+    @IBOutlet weak var coveringRegion: UIView!
+    @IBOutlet weak var bubblesViewRegion: UIView!
+    var timer: Timer?
+    
+    func setToAlone(){
+        circleView.alpha = 1
+        coveringRegion.alpha = 0.8
+        stateButton.setTitle("Alone", for: .normal)
+    }
+    func setToCrowds(){
+        circleView.alpha = 0
+        coveringRegion.alpha = 0
+        stateButton.setTitle("Crowds", for: .normal)
+    }
+    @IBAction func onButtonClick(_ sender: UIButton) {
+        bubbleState = (bubbleState == .alone) ? .crowds : .alone
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        //setup circleView
         let circleDiameter = 100
         let centerX = (Int(view.frame.maxX) - circleDiameter)/2
         let circleFrame = CGRect(x: centerX, y: 283, width: circleDiameter, height: circleDiameter)
-        let circleView = UIView(frame: circleFrame)
+        circleView = UIView(frame: circleFrame)
         circleView.backgroundColor = UIColor.red
         circleView.layer.cornerRadius = CGFloat(circleDiameter/2)
         view.addSubview(circleView)
+        
+        bubbleState = .crowds
+        setToCrowds()
     }
-    
-    @IBOutlet weak var bubblesViewRegion: UIView!
-    var timer: Timer?
     
     @IBAction func screenTapped(_ sender: UITapGestureRecognizer) {
         if timer == nil {
